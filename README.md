@@ -37,11 +37,6 @@ respondents (1) ──┬── (∞) transport_choices
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-- MySQL (or MariaDB)
-- MySQL Workbench (recommended for visual management)
-
 ### Setup Instructions
 
 1. **Clone this repository**
@@ -249,12 +244,12 @@ FROM spending;
 *Figure 1: Tableau dashboard showing key findings from the survey data.*
 
 ### Spending Segments (K-means Clustering)
-![K-means Segments](./images/kmeans_segments.png)
+![K-means Segments](./K-Means%20Thesis.png)
 
 *Figure 2: Three spending segments identified through K-means clustering.*
 
 ### Stripe Simulation Results
-![Stripe Simulation](./images/stripe_simulation.png)
+![Stripe Simulation](./Stripe%20Results.png)
 
 *Figure 3: Total simulated revenue by event type from Stripe test environment.*
 
