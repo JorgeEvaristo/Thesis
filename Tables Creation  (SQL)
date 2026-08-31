@@ -1,0 +1,66 @@
+The following code was written in SQL in order to create the tables:
+
+DROP DATABASE IF EXISTS thesis_berlin;
+CREATE DATABASE thesis_berlin;
+USE thesis_berlin;
+
+# Main Table
+CREATE TABLE respondents (
+    respondent_id INT PRIMARY KEY AUTO_INCREMENT,
+    timestamp DATETIME,
+    age VARCHAR(20),
+    gender VARCHAR(20),
+    nationality VARCHAR(50),
+    education VARCHAR(50),
+    district VARCHAR(50),
+    attended VARCHAR(10),
+    frequency VARCHAR(50),
+    satisfaction INT,
+    motivation VARCHAR(50),
+    email VARCHAR(100)
+);
+
+# Teansport Methods (exact options as the forms)
+CREATE TABLE transport_methods (
+    method_id INT PRIMARY KEY AUTO_INCREMENT,
+    method_name VARCHAR(100) UNIQUE
+);
+
+# Relation Table: Transpor choice by person who answered the survey
+CREATE TABLE transport_choices (
+    choice_id INT PRIMARY KEY AUTO_INCREMENT,
+    respondent_id INT,
+    method_id INT,
+    travel_time VARCHAR(50),
+    travel_district VARCHAR(50),
+    FOREIGN KEY (respondent_id) REFERENCES respondents(respondent_id),
+    FOREIGN KEY (method_id) REFERENCES transport_methods(method_id)
+);
+
+# Event Types (Same options as the form)
+CREATE TABLE event_types_master (
+    event_id INT PRIMARY KEY AUTO_INCREMENT,
+    event_name VARCHAR(100) UNIQUE
+);
+
+# Relation Table: events by people who answered the survey
+CREATE TABLE respondent_events (
+    respondent_id INT,
+    event_id INT,
+    FOREIGN KEY (respondent_id) REFERENCES respondents(respondent_id),
+    FOREIGN KEY (event_id) REFERENCES event_types_master(event_id),
+    PRIMARY KEY (respondent_id, event_id)
+);
+
+# Expenses Table
+CREATE TABLE spending (
+    spending_id INT PRIMARY KEY AUTO_INCREMENT,
+    respondent_id INT,
+    ticket DECIMAL(10,2),
+    food_inside DECIMAL(10,2),
+    food_outside DECIMAL(10,2),
+    other_expenses DECIMAL(10,2),
+    total_spend DECIMAL(10,2),
+    FOREIGN KEY (respondent_id) REFERENCES respondents(respondent_id)
+);
+
